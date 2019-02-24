@@ -1,5 +1,8 @@
 #!/bin/sh
 
+#This script looks for instanceID.txt file with format of
+# Synt: <region>,<instance id>,<target ec2 type>
+# Exmp: ap-southeast-1,i-asdfdv2321efv,t2.medium
 # Verify and exit the script if instance_type is already at desired state
 check_desire_state(){
   current_instance_type=$(aws ec2 describe-instances --instance-id $instance_id --query "Reservations[*].Instances[*].InstanceType" --output text)
