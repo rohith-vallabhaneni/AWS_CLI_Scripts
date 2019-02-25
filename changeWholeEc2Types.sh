@@ -9,10 +9,11 @@ check_desire_state(){
   if [ "$current_instance_type" = "$instance_type" ]; then
     echo "INFO: Current and target instance types are same..."
     echo "INFO: Skipping instance type change for $instance_id.."
-    exit 0;
-#  return 0
+   # exit 0;
+     return 0;
   else
     echo "INFO: Identified change in instance type"
+     return 1;
   fi
 }
 
@@ -108,12 +109,14 @@ change_instance (){
   instance_id="${instances_array[var]}"
   instance_type="${instances_array[var+1]}"
 
-  check_desire_state
-  stop_instance
-  create_snapshots
-  change_instance_type
-  start_instance
-
+  if [ check_desire_state == 1 ]; then
+      stop_instance
+      create_snapshots
+      change_instance_type
+      start_instance
+  
+  else 
+      continue;
   done
 }
 change_instance
