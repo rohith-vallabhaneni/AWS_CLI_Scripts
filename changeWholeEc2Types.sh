@@ -9,7 +9,8 @@ check_desire_state(){
   if [ "$current_instance_type" = "$instance_type" ]; then
       echo "INFO: Current and target instance types are same..."
       echo "INFO: Skipping instance type change for $instance_id.."
-      fla=1
+      fla=1   ## Setting up flag value to check wether we need to run other functions or not
+      ## To make sure that instance is up and running
       start_instance
   fi
   if [ "$fla" != "1" ];
