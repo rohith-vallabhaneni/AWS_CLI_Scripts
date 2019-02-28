@@ -10,7 +10,7 @@ check_desire_state(){
   
   # Verify current instance status is avaialble with the given credentials. If the O/P is empty exit the script.
   if [ "$?" != 0 ]; then
-     echo "Unable to get instance type"
+     echo "ERROR: Unable to get instance type, verify access key, secret key and region"
      exit 1
   fi
 
