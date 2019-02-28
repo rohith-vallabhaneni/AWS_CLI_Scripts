@@ -5,7 +5,16 @@
 # Exmp: ap-southeast-1,i-asdfdv2321efv,t2.medium
 # Verify and exit the script if instance_type is already at desired state
 check_desire_state(){
+  
   current_instance_type=$(aws ec2 describe-instances --instance-id $instance_id --query "Reservations[*].Instances[*].InstanceType" --output text)
+  
+  # Verify current instance status is avaialble with the given credentials. If the O/P is empty exit the script.
+  if [ "$?" != 0 ]; then
+     echo "Unable to get instance type"
+     exit 1
+  fi
+
+  # If current and target instance types are same, skip the instance type change functionality 
   if [ "$current_instance_type" = "$instance_type" ]; then
       echo "INFO: Current and target instance types are same..."
       echo "INFO: Skipping instance type change for $instance_id.."
