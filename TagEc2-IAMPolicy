@@ -52,6 +52,29 @@
             "Action": "ec2:Describe*",
             "Resource": "*"
         },
+                {
+            "Sid": "VisualEditor4",
+            "Effect": "Allow",
+            "Action": [
+                "ec2:DetachVolume",
+                "ec2:AttachVolume",
+                "ec2:RebootInstances",
+                "ec2:TerminateInstances",
+                "ec2:ImportKeyPair",
+                "ec2:CreateKeyPair",
+                "ec2:CreateTags",
+                "elasticloadbalancing:*",
+                "ec2:StopInstances",
+                "autoscaling:*",
+                "ec2:DeleteVolume",
+                "ec2:Describe*",
+                "ec2:StartInstances",
+                "cloudwatch:*",
+                "ec2:CreateSecurityGroup",
+                "ec2:DeleteKeyPair"
+            ],
+            "Resource": "*"
+        },
         {
             "Sid": "VisualEditor3",
             "Effect": "Allow",
